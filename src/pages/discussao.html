@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Discussão — Estuda Junto</title>
+    <link rel="stylesheet" href="/css/globals/global.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">Estuda <span>Junto</span></a>
+      <div class="search">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Pesquisar discussões"
+          aria-label="Pesquisar discussões"
+        />
+      </div>
+      <nav class="header-buttons" data-auth-links></nav>
+    </header>
+    <main class="container" style="max-width: 850px">
+      <a class="muted" href="/">← Voltar para discussões</a>
+      <article class="card" style="margin-top: 15px">
+        <div id="discussionContent">
+          <div class="empty-state">Carregando discussão...</div>
+        </div>
+      </article>
+      <section class="card section">
+        <div class="card-heading">
+          <h2>Comentários</h2>
+          <span class="muted" id="commentCount">0</span>
+        </div>
+        <div id="commentsList"></div>
+        <form id="commentForm" class="comment-form">
+          <div class="field">
+            <label for="commentInput">Sua contribuição</label
+            ><textarea
+              id="commentInput"
+              minlength="2"
+              maxlength="2000"
+              placeholder="Escreva um comentário útil e respeitoso..."
+              required
+            ></textarea>
+          </div>
+          <button class="btn btn-blue" type="submit">Enviar comentário</button>
+          <p class="password-help" id="commentHelp">
+            Entre na sua conta para comentar.
+          </p>
+        </form>
+      </section>
+    </main>
+    <footer class="footer">© 2026 Estuda Junto</footer>
+    <script type="module" src="/js/discussao.js"></script>
+  </body>
+</html>

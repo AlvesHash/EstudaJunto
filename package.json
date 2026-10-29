@@ -1,0 +1,12 @@
+{
+  "name": "estuda-junto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma educacional de discussões entre estudantes",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  }
+}

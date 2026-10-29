@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Criar conta — Estuda Junto</title>
+    <link rel="stylesheet" href="/css/globals/global.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">Estuda <span>Junto</span></a>
+      <nav class="header-buttons">
+        <a class="btn btn-outline" href="/">Início</a>
+      </nav>
+    </header>
+    <main class="form-container">
+      <section class="form-card">
+        <div class="form-header">
+          <div class="form-icon">🎓</div>
+          <h1>Crie sua conta</h1>
+          <p>Participe das discussões e aprenda com outros estudantes.</p>
+        </div>
+        <div id="message" class="hidden" role="status"></div>
+        <form id="registerForm">
+          <div class="field">
+            <label for="name">Nome</label
+            ><input
+              id="name"
+              autocomplete="name"
+              maxlength="70"
+              placeholder="Seu nome"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="username">Nome de usuário</label
+            ><input
+              id="username"
+              autocomplete="username"
+              minlength="3"
+              maxlength="20"
+              pattern="[A-Za-z0-9_]+"
+              placeholder="ex: eduardo123"
+              required
+            /><small>Use de 3 a 20 letras, números ou sublinhados.</small>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label
+            ><input
+              id="email"
+              type="email"
+              autocomplete="email"
+              maxlength="120"
+              placeholder="voce@exemplo.com"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="password">Senha</label
+            ><input
+              id="password"
+              type="password"
+              autocomplete="new-password"
+              minlength="6"
+              placeholder="Pelo menos 6 caracteres"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirmar senha</label
+            ><input
+              id="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              minlength="6"
+              placeholder="Digite novamente"
+              required
+            />
+          </div>
+          <button class="btn btn-blue" type="submit">Criar minha conta</button>
+        </form>
+        <div class="form-footer">
+          Já possui uma conta? <a href="/login">Entrar</a>
+        </div>
+        <p class="password-help">
+          Protótipo local: não use senhas reais nem reutilizadas.
+        </p>
+      </section>
+    </main>
+    <footer class="footer">© 2026 Estuda Junto</footer>
+    <script type="module" src="/js/cadastro.js"></script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Meu perfil — Estuda Junto</title>
+    <link rel="stylesheet" href="/css/globals/global.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">Estuda <span>Junto</span></a>
+      <div class="search">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Pesquisar discussões"
+          aria-label="Pesquisar discussões"
+        />
+      </div>
+      <nav class="header-buttons" data-auth-links></nav>
+    </header>
+    <main class="container">
+      <section class="profile-card">
+        <div class="cover"></div>
+        <div class="profile-content">
+          <div class="profile-main">
+            <div class="profile-heading">
+              <div class="avatar" id="avatar">E</div>
+              <div>
+                <h1 id="userName">Estudante</h1>
+                <div class="muted" id="userUsername">@usuario</div>
+              </div>
+            </div>
+            <button class="btn btn-secondary" id="editProfileButton">
+              Editar perfil
+            </button>
+          </div>
+          <p class="profile-bio" id="userBio">Conte um pouco sobre você.</p>
+        </div>
+      </section>
+      <section class="stats">
+        <div class="stat">
+          <strong id="discussionCount">0</strong><span>Discussões</span>
+        </div>
+        <div class="stat">
+          <strong id="commentCount">0</strong><span>Comentários</span>
+        </div>
+        <div class="stat">
+          <strong id="likeCount">0</strong><span>Curtidas recebidas</span>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header">
+          <h2>Minhas discussões</h2>
+          <a class="btn btn-blue" href="/criar">＋ Criar</a>
+        </div>
+        <div id="discussionsList"></div>
+      </section>
+    </main>
+    <div
+      class="modal"
+      id="editModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="editTitle"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="editTitle">Editar perfil</h2>
+          <button class="close-btn" id="closeModal" aria-label="Fechar">
+            ×
+          </button>
+        </div>
+        <div id="message" class="hidden"></div>
+        <form id="profileForm">
+          <div class="field">
+            <label for="editName">Nome</label
+            ><input id="editName" maxlength="70" required />
+          </div>
+          <div class="field">
+            <label for="editUsername">Nome de usuário</label
+            ><input
+              id="editUsername"
+              minlength="3"
+              maxlength="20"
+              pattern="[A-Za-z0-9_]+"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="editBio">Biografia</label
+            ><textarea
+              id="editBio"
+              maxlength="240"
+              placeholder="Conte um pouco sobre você"
+            ></textarea>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-secondary" id="cancelEdit">
+              Cancelar</button
+            ><button type="submit" class="btn btn-blue">
+              Salvar alterações
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="footer">© 2026 Estuda Junto</footer>
+    <script type="module" src="/js/perfil.js"></script>
+  </body>
+</html>

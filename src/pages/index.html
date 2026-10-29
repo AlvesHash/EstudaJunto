@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Compartilhe dúvidas e aprenda com outros estudantes no Estuda Junto."
+    />
+    <title>Estuda Junto — Aprenda em conjunto</title>
+    <link rel="stylesheet" href="/css/globals/global.css" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">Estuda <span>Junto</span></a>
+      <div class="search">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Pesquisar discussões..."
+          aria-label="Pesquisar discussões"
+        />
+      </div>
+      <nav class="header-buttons" data-auth-links>
+        <a class="btn btn-outline" href="/login">Entrar</a
+        ><a class="btn btn-primary" href="/cadastro">Cadastrar</a>
+      </nav>
+    </header>
+    <main class="container layout">
+      <aside class="sidebar">
+        <h3>Categorias</h3>
+        <div id="categoryList">
+          <button class="category active" data-category="Todas">⌂ Todas</button
+          ><button class="category" data-category="História">📜 História</button
+          ><button class="category" data-category="Matemática">
+            ∑ Matemática</button
+          ><button class="category" data-category="Ciências">⚗ Ciências</button
+          ><button class="category" data-category="Português">
+            📚 Português</button
+          ><button class="category" data-category="Tecnologia">
+            ⌘ Tecnologia</button
+          ><button class="category" data-category="Filosofia">
+            ◉ Filosofia</button
+          ><button class="category" data-category="Geografia">
+            🌎 Geografia</button
+          ><button class="category" data-category="Outros">＋ Outros</button>
+        </div>
+        <div class="notice" style="margin-top: 16px; font-size: 13px">
+          Aprender fica mais fácil quando a gente compartilha.
+        </div>
+      </aside>
+      <section>
+        <div class="welcome">
+          <h1>Olá, estudante!</h1>
+          <p>Aprenda, compartilhe conhecimento e debata com outras pessoas.</p>
+        </div>
+        <button class="create-btn" id="createButton">
+          ＋ Criar nova discussão
+        </button>
+        <div class="card">
+          <div class="card-heading">
+            <h2>Discussões recentes</h2>
+            <span class="muted" id="resultCount"></span>
+          </div>
+          <div id="discussionList" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      © 2026 Estuda Junto · Plataforma de aprendizado colaborativo
+    </footer>
+    <script type="module" src="/js/home.js"></script>
+  </body>
+</html>
