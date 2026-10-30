@@ -6,6 +6,7 @@
   "type": "module",
   "main": "src/app.js",
   "scripts": {
+    "build": "node src/build.js",
     "start": "node src/app.js",
     "dev": "node --watch src/app.js"
   }
