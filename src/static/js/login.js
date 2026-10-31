@@ -1,4 +1,0 @@
-import { users, hashText, setSession } from './globals/store.js';
-const form=document.getElementById('loginForm'), message=document.getElementById('message');
-function show(text,ok=false){message.textContent=text;message.className=`notice ${ok?'success':'error'}`;}
-form.addEventListener('submit',async event=>{event.preventDefault();const email=document.getElementById('email').value.trim().toLowerCase(),password=await hashText(document.getElementById('password').value);const user=users().find(item=>item.email===email&&item.passwordHash===password);if(!user){show('E-mail ou senha incorretos.');return;}setSession(user.username);show('Login realizado. Abrindo seu espaço...',true);const next=new URLSearchParams(location.search).get('next');setTimeout(()=>location.href=next&&next.startsWith('/')&&!next.startsWith('//')?next:'/perfil',300);});
