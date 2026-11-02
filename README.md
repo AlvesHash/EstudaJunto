@@ -1,57 +1,74 @@
 # Estuda Junto
 
-Plataforma web de estudo colaborativo: estudantes publicam dúvidas, comentam e curtem discussões.
+Uma plataforma de aprendizagem colaborativa onde estudantes podem compartilhar dúvidas, trocar conhecimento e aprender em conjunto.
 
-**Como funciona agora**
-- **Servidor:** Java 17 + Spring Boot (cuida de contas, login, discussões, comentários e curtidas).
-- **Site:** HTML/CSS/JavaScript em `src/main/resources/static` (o próprio Java entrega as páginas).
-- **Banco de dados:** PostgreSQL no Supabase. Sem configuração, usa um banco em memória (some ao reiniciar).
-- **Hospedagem:** Render.com (um único serviço).
+**Acesse o site:** [estudajunto.onrender.com](https://estudajunto.onrender.com)
 
-## Conta de demonstração
-Criada automaticamente na primeira vez que o banco está vazio:
-`demo` / `demo1234` (nome de usuário / senha)
+## O que você pode fazer
 
-## Rodar no seu computador
-Requisitos: Java 17+ e Maven.
+- Criar discussões e organizá-las por categoria e tags.
+- Pesquisar discussões e filtrar por categoria.
+- Comentar e curtir publicações.
+- Criar uma conta e entrar usando apenas nome de usuário e senha.
+- Personalizar o perfil com nome, nome de usuário e biografia.
+- Usar a interface em modo escuro, padrão do site.
+
+## Tecnologias
+
+| Parte | Tecnologia |
+| --- | --- |
+| Servidor e API | Java 17 e Spring Boot 3 |
+| Interface | HTML, CSS e JavaScript |
+| Persistência local | H2 em memória |
+| Persistência publicada | PostgreSQL no Supabase |
+| Hospedagem | Render |
+
+## Executar localmente
+
+Você precisa de Java 17 ou superior e Maven.
 
 ```bash
 mvn spring-boot:run
 ```
-Abra http://localhost:8080 (usa o banco em memória, sem configurar nada).
 
-## Colocar no ar (Render + Supabase)
+Abra [http://localhost:8080](http://localhost:8080). Sem configuração de banco, o projeto usa H2 em memória; os dados locais são apagados quando o servidor reinicia.
 
-### 1) Supabase (banco de dados)
-1. Crie um projeto em supabase.com (plano grátis) e guarde a senha do banco.
-2. No painel, clique em **Connect** e copie os dados do **Session pooler**
-   (servidor `...pooler.supabase.com`, porta `5432`, usuário `postgres.<id-do-projeto>`).
-3. Monte a URL no formato:
-   `jdbc:postgresql://SERVIDOR:5432/postgres`
+Quando o banco estiver vazio, a aplicação cria conteúdo de demonstração, incluindo a conta `demo` com a senha `demo1234` e algumas discussões de exemplo. Essa conta é pública e serve apenas para demonstração.
 
-### 2) Render (servidor + site)
-1. Suba esta pasta para o repositório no GitHub.
-2. No Render: **New → Web Service**, escolha o repositório. Ele detecta o `Dockerfile`.
-3. Plano **Free**. Em **Environment Variables**, crie:
-   - `DATABASE_URL` = a URL JDBC do passo anterior
-   - `DB_USER` = `postgres.<id-do-projeto>`
-   - `DB_PASSWORD` = a senha do banco
-4. Clique em **Deploy**. O primeiro build demora alguns minutos.
+## Publicar com Render e Supabase
 
-As tabelas são criadas automaticamente na primeira execução.
+1. Crie um projeto PostgreSQL no Supabase e obtenha os dados de conexão do banco.
+2. No Render, crie um **Web Service** ligado ao repositório. O projeto inclui um `Dockerfile` e um `render.yaml`.
+3. Configure estas variáveis de ambiente no serviço:
 
-## Limitações conhecidas (plano grátis)
-- O Render coloca o serviço para dormir após ~15 min sem acesso; o primeiro acesso depois disso leva cerca de 1 minuto.
-- Não há recuperação de senha, moderação nem limite de tentativas de login (fora do escopo desta fase).
+   | Variável | Valor |
+   | --- | --- |
+   | `DATABASE_URL` | URL JDBC, por exemplo `jdbc:postgresql://HOST:5432/postgres` |
+   | `DB_USER` | Usuário do PostgreSQL fornecido pelo Supabase |
+   | `DB_PASSWORD` | Senha do banco |
 
-## Estrutura
-```
+O Render fornece a variável `PORT`. As tabelas são criadas ou atualizadas quando a aplicação inicia. A aplicação também remove a coluna antiga de email do banco, pois o acesso agora é feito com nome de usuário e senha.
+
+## Estrutura do projeto
+
+```text
 src/main/java/br/edu/estudajunto/
-  model/       Usuario, Discussao, Comentario, Sessao
-  repository/  acesso ao banco
-  service/     regras (AuthService, DiscussaoService)
-  controller/  rotas /api/... e páginas
-  config/      dados iniciais e página 404
-src/main/resources/static/   site (pages, css, js)
+  config/       Inicialização e migrações do banco
+  controller/   Rotas da API e páginas
+  dto/          Dados enviados e recebidos pela API
+  model/        Usuários, discussões, comentários e sessões
+  repository/   Acesso ao banco de dados
+  service/      Regras de negócio e autenticação
+
+src/main/resources/static/
+  css/          Estilos
+  js/           Interações e comunicação com a API
+  pages/        Páginas do site
 ```
+
+## Limitações conhecidas
+
+- Não há recuperação de senha.
+- O projeto ainda não inclui ferramentas de moderação nem limite de tentativas de login.
+- No plano gratuito, o Render pode suspender o serviço após um período sem acessos; a primeira abertura depois disso pode demorar.
 
