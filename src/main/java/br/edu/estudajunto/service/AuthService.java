@@ -52,7 +52,6 @@ public class AuthService {
         Usuario u = new Usuario();
         u.setNome(username);
         u.setUsername(username);
-        u.setEmail(null);
         u.setSenhaHash(encoder.encode(senha));
         u = usuarios.save(u);
         return novaSessao(u);

@@ -17,10 +17,6 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 20)
     private String username;
 
-    // Campo legado mantido opcional para compatibilidade com bancos já existentes.
-    @Column(unique = true, length = 120)
-    private String email;
-
     @Column(nullable = false)
     private String senhaHash;
 
@@ -35,8 +31,6 @@ public class Usuario {
     public void setNome(String nome) { this.nome = nome; }
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
     public String getSenhaHash() { return senhaHash; }
     public void setSenhaHash(String senhaHash) { this.senhaHash = senhaHash; }
     public String getBio() { return bio; }

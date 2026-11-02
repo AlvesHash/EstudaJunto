@@ -27,6 +27,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Map<String, String>> conflito(DataIntegrityViolationException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(Map.of("erro", "Esse usuário ou e-mail já está cadastrado."));
+                .body(Map.of("erro", "Esse nome de usuário já está cadastrado."));
     }
 }
+
