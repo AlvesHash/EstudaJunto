@@ -1,16 +1,18 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
-  color: #202124;
-  background: #f5f7fb;
+  color-scheme: dark;
+  color: #e5e7eb;
+  background: #0b1120;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --blue: #2563eb;
   --blue-dark: #1d4ed8;
-  --blue-soft: #eff6ff;
-  --ink: #202124;
-  --muted: #667085;
-  --line: #e5e7eb;
-  --surface: #fff;
+  --blue-soft: #172554;
+  --ink: #e5e7eb;
+  --muted: #a3adc2;
+  --line: #293449;
+  --surface: #151e2e;
+  --background: #0b1120;
   --radius: 14px;
 }
 * {
@@ -19,7 +21,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--background, #f5f7fb);
+  background: var(--background);
   color: var(--ink);
 }
 a {
@@ -565,6 +567,40 @@ header {
 .hidden {
   display: none !important;
 }
+/* Dark mode is the site's default appearance. */
+.search input,
+.field input,
+.field textarea,
+.field select,
+.comment-form textarea {
+  background: #101827;
+  color: var(--ink);
+  border-color: #3a475e;
+}
+.sidebar,
+.card,
+.panel,
+.discussion-card,
+.profile-card,
+.form-card {
+  border-color: #293449;
+}
+.category { color: #c1cada; }
+.discussion-card h2,
+.discussion-card h3,
+.detail-title,
+.form-header h1 { color: #f1f5f9; }
+.discussion-card p,
+.profile-bio,
+.detail-content,
+.comment-text { color: #c1cada; }
+.btn-secondary { background: #293449; color: #e5e7eb; }
+.notice { background: #172554; color: #bfdbfe; }
+.notice.error { background: #451a24; color: #fecaca; }
+.notice.success { background: #123329; color: #a7f3d0; }
+.stat { background: #101827; border-color: #293449; }
+.profile-heading .avatar { border-color: var(--surface); }
+.modal-content { background: var(--surface); color: var(--ink); }
 .mobile-categories {
   display: none;
 }
@@ -643,4 +679,5 @@ header {
     flex-direction: column;
   }
 }
+
 
