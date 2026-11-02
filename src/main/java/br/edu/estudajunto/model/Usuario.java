@@ -17,7 +17,8 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 20)
     private String username;
 
-    @Column(nullable = false, unique = true, length = 120)
+    // Campo legado mantido opcional para compatibilidade com bancos já existentes.
+    @Column(unique = true, length = 120)
     private String email;
 
     @Column(nullable = false)
@@ -42,3 +43,4 @@ public class Usuario {
     public void setBio(String bio) { this.bio = bio; }
     public Instant getCriadoEm() { return criadoEm; }
 }
+

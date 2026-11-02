@@ -11,12 +11,12 @@ function show(text, ok = false) {
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  const email = document.getElementById('email').value.trim().toLowerCase();
+  const username = document.getElementById('username').value.trim().toLowerCase();
   const password = document.getElementById('password').value;
   button.disabled = true;
   show(WAKING_TEXT, true);
   try {
-    const { token, user } = await login(email, password);
+    const { token, user } = await login(username, password);
     setSession(token, user);
     show('Login realizado. Abrindo seu espaço...', true);
     const next = new URLSearchParams(location.search).get('next');
@@ -26,3 +26,4 @@ form.addEventListener('submit', async event => {
     button.disabled = false;
   }
 });
+

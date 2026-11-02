@@ -10,7 +10,7 @@ Plataforma web de estudo colaborativo: estudantes publicam dúvidas, comentam e 
 
 ## Conta de demonstração
 Criada automaticamente na primeira vez que o banco está vazio:
-`demo@estudajunto.com` / `demo1234`
+`demo` / `demo1234` (nome de usuário / senha)
 
 ## Rodar no seu computador
 Requisitos: Java 17+ e Maven.
@@ -54,3 +54,4 @@ src/main/java/br/edu/estudajunto/
   config/      dados iniciais e página 404
 src/main/resources/static/   site (pages, css, js)
 ```
+

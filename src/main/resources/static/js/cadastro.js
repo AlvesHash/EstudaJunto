@@ -11,20 +11,15 @@ function show(text, ok = false) {
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  const name = document.getElementById('name').value.trim();
   const username = document.getElementById('username').value.trim().toLowerCase();
-  const email = document.getElementById('email').value.trim().toLowerCase();
   const password = document.getElementById('password').value;
-  const confirm = document.getElementById('confirmPassword').value;
-
-  if (name.length < 2) { show('Informe um nome com pelo menos 2 caracteres.'); return; }
+  if (!/^[a-z0-9_]{3,20}$/.test(username)) { show('O usuário deve ter de 3 a 20 caracteres: letras, números ou _.'); return; }
   if (password.length < 6) { show('A senha precisa ter pelo menos 6 caracteres.'); return; }
-  if (password !== confirm) { show('As senhas não são iguais.'); return; }
 
   button.disabled = true;
   show(WAKING_TEXT, true);
   try {
-    const { token, user } = await register({ name, username, email, password });
+    const { token, user } = await register({ username, password });
     setSession(token, user);
     show('Conta criada. Abrindo seu perfil...', true);
     setTimeout(() => location.href = '/perfil', 300);
@@ -33,3 +28,4 @@ form.addEventListener('submit', async event => {
     button.disabled = false;
   }
 });
+

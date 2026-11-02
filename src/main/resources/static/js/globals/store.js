@@ -65,7 +65,7 @@ export async function requireUser() {
 
 // ---------- contas ----------
 export function register(data) { return api('/auth/cadastro', { method: 'POST', body: data }); }
-export function login(email, password) { return api('/auth/login', { method: 'POST', body: { email, password } }); }
+export function login(username, password) { return api('/auth/login', { method: 'POST', body: { username, password } }); }
 export async function logout() {
   try { await api('/auth/logout', { method: 'POST' }); } catch { /* sem problema */ }
   clearSession();
@@ -109,3 +109,4 @@ export function syncHeader() {
 }
 // Mensagem padrão enquanto o servidor responde (no plano grátis ele pode levar ~1 min para acordar).
 export const WAKING_TEXT = 'Conectando ao servidor… na primeira visita pode levar cerca de 1 minuto.';
+

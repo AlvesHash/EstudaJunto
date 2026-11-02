@@ -37,13 +37,13 @@ public class DadosIniciais implements CommandLineRunner {
         if (discussoes.count() > 0 || usuarios.count() > 0) return;
 
         // Conta de demonstração (acesso para a apresentação)
-        criarUsuario("Aluno Demonstração", "demo", "demo@estudajunto.com", "demo1234");
+        criarUsuario("Aluno Demonstração", "demo", "demo1234");
 
         // Autores dos exemplos (não conseguem fazer login: senha aleatória)
-        Usuario joao = criarUsuario("João Silva", "joaosilva", "joao@exemplo.com", UUID.randomUUID().toString());
-        Usuario maria = criarUsuario("Maria Costa", "mariacosta", "maria@exemplo.com", UUID.randomUUID().toString());
-        Usuario pedro = criarUsuario("Pedro Lima", "pedrolima", "pedro@exemplo.com", UUID.randomUUID().toString());
-        Usuario lucas = criarUsuario("Lucas Rocha", "lucasrocha", "lucas@exemplo.com", UUID.randomUUID().toString());
+        Usuario joao = criarUsuario("João Silva", "joaosilva", UUID.randomUUID().toString());
+        Usuario maria = criarUsuario("Maria Costa", "mariacosta", UUID.randomUUID().toString());
+        Usuario pedro = criarUsuario("Pedro Lima", "pedrolima", UUID.randomUUID().toString());
+        Usuario lucas = criarUsuario("Lucas Rocha", "lucasrocha", UUID.randomUUID().toString());
 
         Discussao historia = criarDiscussao(joao, "Quais foram as principais causas da Revolta da Vacina?", "História",
                 "Estou estudando a Revolta da Vacina, ocorrida no Rio de Janeiro em 1904. Como a vacinação obrigatória se relacionou com as reformas urbanas e a insatisfação popular?",
@@ -64,11 +64,10 @@ public class DadosIniciais implements CommandLineRunner {
                 List.of("Programação", "Iniciantes"), 172800);
     }
 
-    private Usuario criarUsuario(String nome, String username, String email, String senha) {
+    private Usuario criarUsuario(String nome, String username, String senha) {
         Usuario u = new Usuario();
         u.setNome(nome);
         u.setUsername(username);
-        u.setEmail(email);
         u.setSenhaHash(auth.codificarSenha(senha));
         return usuarios.save(u);
     }
@@ -85,3 +84,4 @@ public class DadosIniciais implements CommandLineRunner {
         return discussoes.save(d);
     }
 }
+

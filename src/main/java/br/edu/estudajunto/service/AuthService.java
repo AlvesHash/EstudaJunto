@@ -40,28 +40,19 @@ public class AuthService {
 
     @Transactional
     public AuthRes cadastrar(CadastroReq req) {
-        String nome = limpo(req.name());
         String username = limpo(req.username()).toLowerCase();
-        String email = limpo(req.email()).toLowerCase();
         String senha = req.password() == null ? "" : req.password();
 
-        if (nome.length() < 2 || nome.length() > 70)
-            throw erro(HttpStatus.BAD_REQUEST, "Informe um nome com 2 a 70 caracteres.");
         if (!USERNAME.matcher(username).matches())
             throw erro(HttpStatus.BAD_REQUEST, "O usuário deve ter 3 a 20 caracteres: letras, números ou _.");
-        if (!email.contains("@") || email.length() > 120)
-            throw erro(HttpStatus.BAD_REQUEST, "Informe um e-mail válido.");
         if (senha.length() < 6 || senha.length() > 100)
             throw erro(HttpStatus.BAD_REQUEST, "A senha precisa ter pelo menos 6 caracteres.");
         if (usuarios.existsByUsername(username))
             throw erro(HttpStatus.CONFLICT, "Esse nome de usuário já está em uso.");
-        if (usuarios.existsByEmail(email))
-            throw erro(HttpStatus.CONFLICT, "Já existe uma conta com esse e-mail.");
-
         Usuario u = new Usuario();
-        u.setNome(nome);
+        u.setNome(username);
         u.setUsername(username);
-        u.setEmail(email);
+        u.setEmail(null);
         u.setSenhaHash(encoder.encode(senha));
         u = usuarios.save(u);
         return novaSessao(u);
@@ -69,11 +60,11 @@ public class AuthService {
 
     @Transactional
     public AuthRes entrar(LoginReq req) {
-        String email = limpo(req.email()).toLowerCase();
+        String username = limpo(req.username()).toLowerCase();
         String senha = req.password() == null ? "" : req.password();
-        Usuario u = usuarios.findByEmail(email).orElse(null);
+        Usuario u = usuarios.findByUsername(username).orElse(null);
         if (u == null || !encoder.matches(senha, u.getSenhaHash()))
-            throw erro(HttpStatus.UNAUTHORIZED, "E-mail ou senha incorretos.");
+            throw erro(HttpStatus.UNAUTHORIZED, "Nome de usuário ou senha incorretos.");
         return novaSessao(u);
     }
 
@@ -130,7 +121,7 @@ public class AuthService {
     public String codificarSenha(String senha) { return encoder.encode(senha); }
 
     public static UsuarioRes paraRes(Usuario u) {
-        return new UsuarioRes(u.getNome(), u.getUsername(), u.getEmail(), u.getBio() == null ? "" : u.getBio(), u.getCriadoEm());
+        return new UsuarioRes(u.getNome(), u.getUsername(), u.getBio() == null ? "" : u.getBio(), u.getCriadoEm());
     }
 
     private AuthRes novaSessao(Usuario u) {
@@ -164,3 +155,4 @@ public class AuthService {
 
     static ApiException erro(HttpStatus status, String msg) { return new ApiException(status, msg); }
 }
+
